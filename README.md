@@ -12,3 +12,6 @@ Project Scope
 
 This project aims to upgrade the manual boarding process at Airport to a Smart Boarding Pass system, supported by the Pakistan Civil Aviation Authority (PCAA).
 The goal is to make the boarding process faster, safer, and more efficient.
+
+
+Createing   front end files 
