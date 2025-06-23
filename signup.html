@@ -79,8 +79,7 @@
       const email = form.email.value.trim();
       const password = form.password.value;
       const confirmPassword = form.confirmPassword.value;
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const emailRegex= /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/;
 
       if (firstname.length < 3) {
