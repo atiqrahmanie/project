@@ -14,4 +14,7 @@ This project aims to upgrade the manual boarding process at Airport to a Smart B
 The goal is to make the boarding process faster, safer, and more efficient.
 
 
+Working steps
+
+
 Createing   front end files 
