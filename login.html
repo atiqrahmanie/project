@@ -3,11 +3,14 @@
     <titl>Login Form</titl>
     <style >
       body{
+        font-family: Arail, sans-serif;
+        background : #f4f4f4;
+        padding: 40;
       }
       form{
         background:white;
-        paddind:45px;
-        max-width:450px;
+        paddind:40px;
+        max-width:400px;
         margen:auto;
         border-radious: 10px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -23,19 +26,19 @@ color:red;
 font-size:0.9em;
 margin-bottom:12px;
   }
-  button{
+  button {
 padding:10px 15px;
 background-color:#0056b3;
 border:none;
 color:white;
 border=radius:4px;
-cursor:pointer:
+cursor:pointer;
   }
 button:hover{
-background-color:#0056b3
+background-color:#0056b3;
 }
 .links{ 
-margin-top:15px
+margin-top:15px;
 display:flex;
 justify-content:space-between;
 font-size:1.0em;
@@ -46,7 +49,6 @@ text-decoration:none;
 }
  .linka a:hover{
 text-decorate: underline;
-
     </style>
   </head>
 </body>
@@ -55,11 +57,9 @@ text-decorate: underline;
 <div class="error"id="errorMsg"></div>
     <label for="email">Email</label>
     <input type="email" id="email" name="email" required>
-
-<label for="password">Password</label>
+    <label for="password">Password</label>
     <input type="password" id="password" name="password" required>
-  <button type="submit">Login</button>
-
+          <button type="submit">Login</button>
     <div class="links">
       <a href="reset.html">Forgot Password?</a>
       <a href="signup.html">Sign Up</a>
@@ -72,7 +72,6 @@ text-decorate: underline;
     form.addEventListener('submit', function(e) {
       e.preventDefault(); // stop default form submission
       errorMsg.innerText = ''; // reset error message
-
       const email = form.email.value.trim();
       const password = form.password.value;
 
