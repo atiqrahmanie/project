@@ -111,6 +111,39 @@
             </div>        
             </div>
             <button id="Print " style="display: none;"> Print Boarding Pass</button>
+
+      //   Get input values 
+
+
+            <script>
+                         document.getElementById('BoardingForm').addEventListener('submit' ,function (e){
+                            e.preventDefault();
+
+                            const firstname = document.getElementById('firstname').value;
+                            const lastname = document.getElementById('lastname').value;
+                            const flight = document.getElementById('flight').value;
+                            const date = document.getElementById('date').value;
+                            const from = document.getElementById('from').value;
+                            const to = document.getElementById('to').value;
+                            const gate = document.getElementById('gate').value;
+                            const seat = document.getElementById('time').value;
+                           //overview DATA
+                           document.getElementById('outname').textContent = firstname;
+                           document.getElementById('outlastname').textContent = lastname;
+                           document.getElementById('outflight').textContent = flight;
+                           document.getElementById('outdate').textContent = date;
+                           document.getElementById('outfrom').textContent = from;
+                           document.getElementById('outto').textContent = to;
+                           document.getElementById('outgate').textContent = gate;
+                           document.getElementById('outseat').textContent = seat;
+                           document.getElementById('outtime').textContent = time;
+
+
+                         })
+
+
+            </script>
+
             
  </body>
 </html>
