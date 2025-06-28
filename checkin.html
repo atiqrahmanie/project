@@ -1,1 +1,91 @@
+<html>
+    <head>
+    <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+ <title>Boarding Pass</title> 
+ 
+    <script 
+    src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js">
+</script>
 
+ <style>
+    body {
+        font-family: Arial , sans-serif;
+        background-color: #f0f2f5;
+        padding: 40px;
+
+    }
+
+    form, .preview, button{
+
+        max-width: 600px;
+        margin: auto;
+    }
+    form input {
+        width: 250;
+        padding: 8px;
+        margin-bottom: 15;
+        border: 1px solid #ccc;
+        border-radius:  6px;
+
+    }
+    .preview{
+        background: #fff;
+        padding: 20px 30px;
+        border: 2px dashed #888;
+        border-radius:  12px;
+        margin-top: 30px;
+    }
+    .preview .header{
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px dashed #ccc;
+        margin-bottom: 20px;
+
+    }
+
+    .airline { font-size:  24px; font-weight: bold; color: #0077b6; }
+    .detail { display: flex; flex-wrap:  wrap; justify-content: space-between; }
+    .detail div {
+        width: 48%;
+        margin-bottom: 15px;
+
+    }
+
+    .label { font-size: 12px; color: #555; text-transform: uppercase; }
+    .value { font-size: 18px;font-weight: bold; }
+    .barcode { text-align: center;margin-top: 20px; }
+
+    button{
+        display: block;
+        margin: 30px auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        background: #0077b6;
+         color: #fff;
+         border: none;
+         border-radius: 8px
+  }
+    
+ </style>  
+ </head>
+ <body>
+    <form id="Boarding pass Form">
+        
+        <input type="text" id="FirstName" placeholder="FirstName" required /><br>
+        <input type="text" id="LastName" placeholder="LirstName" required /><br>
+        <input type="date"  id="date" required /><br>
+        <input type="text" id="Form" placeholder="From Dub e.g" required  /><br>
+        <select id="Form" required>
+  
+                <input type="text" id="TO" placeholder="TO Lhr e.g" required  /><br>
+                <br>
+                <input type="text"id="Gate" placeholder="Gate" required /><br>
+                <input type="text"id="Seat" placeholder="Seat" required /><br>
+                <input type="time" id="time" required /><br>
+                <button type="Submit"> Print Boarding Pass</button><br>
+
+
+    </form>
+ </body>
