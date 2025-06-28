@@ -71,65 +71,58 @@
  </style>  
  </head>
  <body>
-    <form id="Boarding pass Form">
-        
-        <input type="text" id="FirstName" placeholder="FirstName" required /><br>
-        <input type="text" id="LastName" placeholder="LirstName" required /><br>
+    <form id="boardingform">
+        <input type="text" id="name" placeholder="Name" required /><br>
+                <input type="text" id="flight" placeholder="Flight Number" required /><br>
+
         <input type="date"  id="date" required /><br>
-        <input type="text" id="Form" placeholder="From Dub e.g" required  /><br>
-        <select id="Form" required>
-  
-                <input type="text" id="TO" placeholder="TO Lhr e.g" required  /><br>
-                <br>
-                <input type="text"id="Gate" placeholder="Gate" required /><br>
-                <input type="text"id="Seat" placeholder="Seat" required /><br>
+        <input type="text" id="from" placeholder="From Dub e.g" required  /><br>
+        <input type="text" id="to" placeholder="To Lhr e.g" required  /><br>
+                <input type="text"id="gate" placeholder="Gate" required /><br>
+                <input type="text"id="seat" placeholder="Seat" required /><br>
                 <input type="time" id="time" required /><br>
                 <button type="Submit"> Print Boarding Pass</button><br>
 
 
     </form>
-      <div id="Boarding pass" class="preview" style="display: none;">
+    <div id="boardingpass" class="preview" style="display: none;">
         <div class="header">
             <div class="airline">Emirates Airline</div>
             <div class="flight">Flight : <span id="outflight"></span>
             </div>
-        </span>/div>
         </div>
+
+
            <div class="details">
-            <div><div class="label">Passenger FirstName</div><div class="value" id="outFirstName"></div></div>
-            <div><div class="label">Passenger Last Name</div><div class="value" id="OutlastName"></div></div>
-            <div><div class="label">DATE</div><div class="value" id="outdate"></div></div>
-            <div><div class="label">From</div><div class="value" id="outFrom"></div></div>
-                        <div><div class="label">TO</div><div class="value" id="outTo"></div></div>
-                       <div><div class="label">Gate</div><div class="value" id="outgate"></div></div>
-                       <div><div class="label">Seat</div><div class="value" id="outseat"></div></div>
-                        <div><div class="label">Boarding time</div><div class="value" id="outtime"></div>
-                    </div>
-                    </div>
+            <div><div class="label">Passenger Name</div><div class="value" id="outname"></div></div>
+            <div><div class="label">Date</div><div class="value" id="outdate"></div></div>
+            <div><div class="label">From</div><div class="value" id="outfrom"></div></div>
+            <div><div class="label">To</div><div class="value" id="outto"></div></div>
+            <div><div class="label">Gate</div><div class="value" id="outgate"></div></div>
+            <div><div class="label">Seat</div><div class="value" id="outseat"></div></div>
+            <div><div class="label">Boardind Time</div><div class="value" id="outtime"></div></div>
+            </div>
+    
             <div class="barcode">
                 <img id="qr" src="" alt="QR Code" />
             </div>        
             </div>
-            <button id="Print " style="display: none;"> Print Boarding Pass</button>
-
-      //   Get input values 
-
+            <button id="printbtn" style="display: none;"> Print Boarding Pass</button>
 
             <script>
-                         document.getElementById('BoardingForm').addEventListener('submit' ,function (e){
+                         document.getElementById('boardingform').addEventListener('submit' ,function (e){
                             e.preventDefault();
 
-                            const firstname = document.getElementById('firstname').value;
-                            const lastname = document.getElementById('lastname').value;
+                            const name = document.getElementById('name').value;
                             const flight = document.getElementById('flight').value;
                             const date = document.getElementById('date').value;
                             const from = document.getElementById('from').value;
                             const to = document.getElementById('to').value;
                             const gate = document.getElementById('gate').value;
-                            const seat = document.getElementById('time').value;
+                            const seat = document.getElementById('seat').value;
+                            const time = document.getElementById('time').value;
                            //overview DATA
-                           document.getElementById('outname').textContent = firstname;
-                           document.getElementById('outlastname').textContent = lastname;
+                           document.getElementById('outname').textContent = name;
                            document.getElementById('outflight').textContent = flight;
                            document.getElementById('outdate').textContent = date;
                            document.getElementById('outfrom').textContent = from;
@@ -138,13 +131,19 @@
                            document.getElementById('outseat').textContent = seat;
                            document.getElementById('outtime').textContent = time;
 
-
-                         })
-
+                            // QR Code
+      const qrData = `${flight}-${from}-${to}-${name}`;
+      document.getElementById('qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrData)}`;
+            document.getElementById('boardingpass') .style.display= 'block' ;
+            document.getElementById('printbtn') .style.display= 'block' ;
+               });
+               //         for dowload or print 
+               document.getElementById('printbtn').addEventListener('click', function(){
+                const   element= document.getElementById('boardindpass');
+                html2pdf().from(element).save('boardindpass.pdf');
+               });
 
             </script>
 
-            
  </body>
 </html>
- </body>
