@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, session, flash, request
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
+current_user = UserMixin
 from flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField,SubmitField
 from wtforms.validators import DataRequired, Email, ValidationError
@@ -111,9 +112,15 @@ def login():
 
 
 @app.route('/dashboard')
+@login_required
 def dashboard():
     return render_template('dashboard.html')
-
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have been logged out.', 'success')
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.run(debug=True)
