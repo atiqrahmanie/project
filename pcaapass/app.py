@@ -120,7 +120,7 @@ def login():
 
 
 
-@app.route('/dashboard' , methods['Get','Post'])
+@app.route('/dashboard' , methods=['GET','POST'])
 @login_required
 def dashboard():
 
@@ -187,7 +187,7 @@ def dashboard():
 # adding delete route
 
 
-@app.route('/delete_pass/<int: index>' , methods=['POST'])
+@app.route('/delete_pass/<int:index>' , methods=['POST'])
 
 @login_required
 def delete_pass(index):
