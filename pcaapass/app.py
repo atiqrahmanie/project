@@ -158,6 +158,7 @@ def dashboard():
             'flightno': form.flightno.data,
             'flightfrom': form.flightfrom.data,
             'flightto': form.flightto.data
+            
         }
       
 

@@ -27,18 +27,19 @@
 
           {{ form.hidden_tag() }}
 
-          {{ form.name.label }} {{ FORM.NAME(SIZE=25)}}<br>
+          {{ form.name.label }} {{ form.name(SIZE=25)}}<br>
           {{ form.passportno.label }} {{ form.passportno(size=25) }}<br>
           {{ form.flightno.label }} {{ form.flightno(size=25) }}<br>
           {{ form.flightfrom.label}} {{ form.flightfrom(size=25) }}<br>
           {{ form.flightto.label }} {{ form.flightto(size=25) }}<br>
-          {{ form.date.label }} {{ form.date(size=25) }}<br>
-          {{ form.time.label }} {{ form.time(size=25) }}<br>
+       
           {{ form.submit() }}
 </form>
 <h4>Your Boarding passes</h4>
-<ul>
-      {% for pass in passes %}
+
+      {% if passes %}
+      <ul>
+        {% for pass in passes %}
         <li>
             <strong>Name:</strong> {{ pass.name }}<br>
             <strong>Passport No:</strong> {{ pass.passportno }}<br>
