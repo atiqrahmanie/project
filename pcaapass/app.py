@@ -1,6 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, session, flash, request
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
-current_user = UserMixin
 from flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField,SubmitField
 from wtforms.validators import DataRequired, Email, ValidationError
@@ -35,6 +34,7 @@ class User(UserMixin):
     def __init__(self, user_id, name,email):
         self.id = user_id
         self.name = name
+        self.email = email
 
 
 
@@ -61,6 +61,15 @@ class loginForm(FlaskForm):
     password = PasswordField("password", validators=[DataRequired()])
     submit = SubmitField("login")
 
+    # for  boarding pass form
+
+class Travelpassform(FlaskForm):
+    name = StringField('passenger name', validator=[DataRequired()])
+    passportno = StringField('passportno', validator=[DataRequired()])
+    flightno = StringField('flightno', validator=[DataRequired()])
+    flightfrom = StringField('flightfrom', validator=[DataRequired()])
+    flightto = StringField('flightto', validator=[DataRequired()])
+    submit = SubmitField('submit')
 
 @app.route('/register' ,methods=['GET', 'POST'])
 def register():
@@ -111,9 +120,36 @@ def login():
 
 
 
-@app.route('/dashboard')
+@app.route('/dashboard' , methods['Get','Post'])
 @login_required
 def dashboard():
+
+    form = TravelpassForm()
+    if 'travel_passes' not in session:
+           session['travel_passes' ] = []
+    passes = session.get('travel_passes' , [])
+
+
+
+    if form.validate_on_submit():
+         data = {
+            'name': form.name.data,
+            'passportno': form.passportno.data,
+            'flightno': form.flightno.data,
+            'flightfrom': form.flightfrom.data,
+            'flightto': form.flightto.data
+            }
+         
+
+
+         edit_index = request.args.get('edit')
+         if edit_index is not None:
+               passes[int(edit_index)] = data
+        
+         else:
+              passes.append(data)
+                           
+
     return render_template('dashboard.html')
 @app.route('/logout')
 @login_required

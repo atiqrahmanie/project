@@ -12,11 +12,23 @@
 <body>
 
 <div class="container mt-4">
-  <h2>Login form</h2> 
-  <form action="/login" method="POST">
+  <h2>Register form</h2> 
+  <form action="/register" method="POST">
    {{ form.hidden_tag() }}
        <div class="form-group">
-           
+            <! ----- name---->
+           {{ form.name.label(for="name")  }}
+           {{ form.name(id="name" , class="form-control")  }} 
+
+            {% if form.name.errors %}
+              <ul>
+                 {% for error in form.name.errors %}
+                     <li>{{ error }}</li>
+                         {% endfor %}
+              </ul>
+              {% endif %}
+              </div>
+               <! ----- email---->
            
             
             <div class="form-group">
@@ -52,6 +64,7 @@
                             {{ form.submit(class= "btn btn-dark mt-4") }}
 
               
+                             <p> Already have and account ? <a href="/login">login</a></p>             
 
   </form>
 </div>
