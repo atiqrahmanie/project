@@ -22,5 +22,39 @@
         </div>
     </div>
 </div>
-</body>
+<h4> Check_in Bording Pass</h4>
+<form method="POST">
+
+          {{ form.hidden_tag() }}
+
+          {{ form.name.label }} {{ FORM.NAME(SIZE=25)}}<br>
+          {{ form.passportno.label }} {{ form.passportno(size=25) }}<br>
+          {{ form.flightno.label }} {{ form.flightno(size=25) }}<br>
+          {{ form.flightfrom.label}} {{ form.flightfrom(size=25) }}<br>
+          {{ form.flightto.label }} {{ form.flightto(size=25) }}<br>
+          {{ form.date.label }} {{ form.date(size=25) }}<br>
+          {{ form.time.label }} {{ form.time(size=25) }}<br>
+          {{ form.submit() }}
+</form>
+<h4>Your Boarding passes</h4>
+<ul>
+      {% for pass in passes %}
+        <li>
+            <strong>Name:</strong> {{ pass.name }}<br>
+            <strong>Passport No:</strong> {{ pass.passportno }}<br>
+            <strong>Flight No:</strong> {{ pass.flightno }}<br>
+            <strong>Flight From:</strong> {{ pass.flightfrom }}<br>
+            <strong>Flight To:</strong> {{ pass.flightto }}<br>
+            <strong>Date:</strong> {{ pass.date }}<br>
+            <strong>Time:</strong> {{ pass.time }}<br>
+            <a href="{{ url_for('dashboard' , edit=loop.index0 )}}">Edit</a>
+            <form method="POST" action="{{ url_for('delete_pass' , index=loop.index0) }}" styyle="display:inline;">
+                       <button type="submit">Delete</button>
+        </li>
+      {% endfor %}
+</ul>
+{% else %}
+<p>No boarding passes found.</p>
+{% endif %}
+</body
 </html>

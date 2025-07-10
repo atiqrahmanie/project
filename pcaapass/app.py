@@ -63,7 +63,7 @@ class loginForm(FlaskForm):
 
     # for  boarding pass form
 
-class Travelpassform(FlaskForm):
+class TravelpassForm(FlaskForm):
     name = StringField('passenger name', validator=[DataRequired()])
     passportno = StringField('passportno', validator=[DataRequired()])
     flightno = StringField('flightno', validator=[DataRequired()])
