@@ -148,9 +148,73 @@ def dashboard():
         
          else:
               passes.append(data)
-                           
+
+
+     #    for sessions      
+
+    session['travel_passes'] = passes
+    flash('Travel pass added successfully!', 'success')
+    
+    return  redirect(url_for('dashboard'))
+
+
+      #          if travel want to edit
+
+
+
+
+
+    edit_index = request.args.get('edit')
+    if edit_index is not None:
+             try:
+                  bp = passes[int(edit_index)]
+                  form.name.data = bp['name']
+                  form.passportno.data = bp['passportno']
+                  form.flightno.data = bp['flightno']   
+                  form.flightfrom.data = bp['flightfrom'] 
+                  form.flightto.data = bp['flightto']
+             except:
+                    flash('Not Valid Travel pass index.')
+
+
+
+
 
     return render_template('dashboard.html')
+
+
+
+# adding delete route
+
+
+@app.route('/delete_pass/<int: index>' , methods=['POST'])
+
+@login_required
+def delete_pass(index):
+    if 'travel_passes' in session:
+        passes = session['travel_passes']
+        if 0 <= index < len(passes):
+            del passes[index]
+            session['travel_passes'] = passes
+            flash('Travel pass deleted successfully!', 'success')
+        else:
+            flash('Invalid travel pass index.', 'danger')
+    else:
+        flash('No travel passes found.', 'warning')
+    return redirect(url_for('dashboard'))
+     
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route('/logout')
 @login_required
 def logout():
