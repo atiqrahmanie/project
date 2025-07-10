@@ -120,52 +120,25 @@ def login():
 
 
 
+
+
+
 @app.route('/dashboard' , methods=['GET','POST'])
 @login_required
 def dashboard():
 
     form = TravelpassForm()
+
     if 'travel_passes' not in session:
-           session['travel_passes' ] = []
-    passes = session.get('travel_passes' , [])
+           session['travel_passes'] = []
 
-
-
-    if form.validate_on_submit():
-         data = {
-            'name': form.name.data,
-            'passportno': form.passportno.data,
-            'flightno': form.flightno.data,
-            'flightfrom': form.flightfrom.data,
-            'flightto': form.flightto.data
-            }
-         
-
-
-         edit_index = request.args.get('edit')
-         if edit_index is not None:
-               passes[int(edit_index)] = data
-        
-         else:
-              passes.append(data)
-
-
-     #    for sessions      
-
-    session['travel_passes'] = passes
-    flash('Travel pass added successfully!', 'success')
-    
-    return  redirect(url_for('dashboard'))
-
-
-      #          if travel want to edit
-
-
-
-
+    passes = session['travel_passes']
 
     edit_index = request.args.get('edit')
-    if edit_index is not None:
+
+    
+    if request.method == 'GET' and edit_index is not None:
+     if edit_index is not None:
              try:
                   bp = passes[int(edit_index)]
                   form.name.data = bp['name']
@@ -173,14 +146,41 @@ def dashboard():
                   form.flightno.data = bp['flightno']   
                   form.flightfrom.data = bp['flightfrom'] 
                   form.flightto.data = bp['flightto']
-             except:
+             except (ValueError):
                     flash('Not Valid Travel pass index.')
+  
+   #    submission on post
+
+    if request.method == 'POST' and form.validate_on_submit():
+        data = {
+            'name': form.name.data,
+            'passportno': form.passportno.data,
+            'flightno': form.flightno.data,
+            'flightfrom': form.flightfrom.data,
+            'flightto': form.flightto.data
+        }
+      
+
+        if edit_index is not None:
+               passes[int(edit_index)] = data
+        
+        else:
+              passes.append(data)
+
+
+     #    for sessions      
+
+        session['travel_passes'] = passes
+        flash('Travel pass added successfully!', 'success')
+    
+        return  redirect(url_for('dashboard'))
+    return render_template('dashboard.html', form=form, passes=passes)
+
+   
 
 
 
 
-
-    return render_template('dashboard.html')
 
 
 
