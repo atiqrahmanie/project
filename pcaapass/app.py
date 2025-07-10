@@ -69,6 +69,8 @@ class TravelpassForm(FlaskForm):
     flightno = StringField('flightno', validators=[DataRequired()])
     flightfrom = StringField('flightfrom', validators=[DataRequired()])
     flightto = StringField('flightto', validators=[DataRequired()])
+    date = StringField('date', validators=[DataRequired()])
+    time = StringField('time', validators=[DataRequired()])
     submit = SubmitField('submit')
 
 @app.route('/register' ,methods=['GET', 'POST'])
@@ -146,6 +148,8 @@ def dashboard():
                   form.flightno.data = bp['flightno']   
                   form.flightfrom.data = bp['flightfrom'] 
                   form.flightto.data = bp['flightto']
+                  form.date.data = bp['date']
+                  form.time.data = bp['time']
              except (ValueError):
                     flash('Not Valid Travel pass index.')
   
@@ -157,7 +161,9 @@ def dashboard():
             'passportno': form.passportno.data,
             'flightno': form.flightno.data,
             'flightfrom': form.flightfrom.data,
-            'flightto': form.flightto.data
+            'flightto': form.flightto.data,
+            'date' : form.date.data,
+            'time': form.time.data
             
         }
       
