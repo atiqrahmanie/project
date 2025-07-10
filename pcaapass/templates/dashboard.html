@@ -18,11 +18,37 @@
             <h1> welcome to the Dashboard</h1>
            <p>Name   {{ current_user.name }} </p>
            <p>email {{ current_user.email }}</p>
+
+           <form method="POST">
+      <table>
+          {{ form.hidden_tag() }}
+          <tr>
+          <td>{{ form.name.label }} </td>
+          <td> {{ form.name(SIZE=25)}}</td>
+          </tr>
+          <tr>
+         <td> {{ form.passportno.label }}</td>
+          <td>{{ form.passportno(size=25) }}</td>
+          </tr>
+          <tr>
+              <td> {{ form.flightno.label }} </td>
+               <td> {{ form.flightno(size=25) }} </td>
+               </tr>
+           <tr>    
+              <td> {{ form.flightfrom.label}} 
+               {{ form.flightfrom(size=25) }}</tr>
+            </tr>
+          {{ form.flightto.label }} {{ form.flightto(size=25) }}<br>
+          {{ form.date.label }} {{ form.date(size=25) }}<br>
+          {{ form.time.label }} {{ form.time(size=25) }}<br>
+          {{ form.submit() }}
+</form>
             <a href="/logout" class="btn btn-danger">Logout</a>
         </div>
     </div>
 </div>
 <h4> Check_in Bording Pass</h4>
+<div>
 <form method="POST">
 
           {{ form.hidden_tag() }}
@@ -32,9 +58,11 @@
           {{ form.flightno.label }} {{ form.flightno(size=25) }}<br>
           {{ form.flightfrom.label}} {{ form.flightfrom(size=25) }}<br>
           {{ form.flightto.label }} {{ form.flightto(size=25) }}<br>
+          {{ form.date.label }} {{ form.date(size=25) }}<br>
+          {{ form.time.label }} {{ form.time(size=25) }}<br>
        
           {{ form.submit() }}
-</form>
+</form></div>
 <h4>Your Boarding passes</h4>
 
       {% if passes %}
