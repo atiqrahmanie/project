@@ -64,11 +64,11 @@ class loginForm(FlaskForm):
     # for  boarding pass form
 
 class TravelpassForm(FlaskForm):
-    name = StringField('passenger name', validator=[DataRequired()])
-    passportno = StringField('passportno', validator=[DataRequired()])
-    flightno = StringField('flightno', validator=[DataRequired()])
-    flightfrom = StringField('flightfrom', validator=[DataRequired()])
-    flightto = StringField('flightto', validator=[DataRequired()])
+    name = StringField('passenger name', validators=[DataRequired()])
+    passportno = StringField('passportno', validators=[DataRequired()])
+    flightno = StringField('flightno', validators=[DataRequired()])
+    flightfrom = StringField('flightfrom', validators=[DataRequired()])
+    flightto = StringField('flightto', validators=[DataRequired()])
     submit = SubmitField('submit')
 
 @app.route('/register' ,methods=['GET', 'POST'])
