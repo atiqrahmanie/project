@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Flask mysql</title>
+  <title>PCAA Boarding System</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -100,16 +100,11 @@
 <p>No boarding passes found.</p>
 {% endif %}
 
-
-
-
 <script>
 function printPass(index) {
   const passDiv = document.getElementById(`pass-${index}`);
   const printWindow = window.open('', '', 'width=800,height=600');
   printWindow.document.write(`
-    <html>
-      <head>
         <title>Print Boarding Pass</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
       </head>
