@@ -153,8 +153,8 @@ def dashboard():
                   form.flightno.data = bp['flightno']   
                   form.flightfrom.data = bp['flightfrom'] 
                   form.flightto.data = bp['flightto']
-                  form.date.data =  datetime.striptime(bp['date'] , '%Y-%m-%d').date()
-                  form.time.data =  datetime.striptime(bp['time'] , '%H:%M').date()
+                  form.date.data =  datetime.datetime.strptime(bp['date'] , '%Y-%m-%d').date()
+                  form.time.data =  datetime.datetime.strptime(bp['time'] , '%H:%M').time()
 
         except (ValueError):
                     flash('Not Valid Travel pass index.')

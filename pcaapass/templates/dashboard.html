@@ -85,8 +85,7 @@
             <strong>Flight To:</strong> {{ pass.flightto }}<br>
             <strong>Date:</strong> {{ pass.date }}<br>
             <strong>Time:</strong> {{ pass.time }}<br>
-            <strong>QR Code:</strong><br>
-             <img src="{{ pass.qr_code }}" alt="QR Code"><br>
+         
              </div>
               <button class="btn btn-primary btn-sm mt-2" onclick="printPass({{ loop.index0 }})">Print</button>
 
@@ -101,6 +100,12 @@
 {% endif %}
 
 <script>
+  
+  function togglePreview() {
+    const preview = document.getElementById('boardingpass');
+    preview.style.display = preview.style.display === 'none' ? 'block' : 'none';
+  }
+
 function printPass(index) {
   const passDiv = document.getElementById(`pass-${index}`);
   const printWindow = window.open('', '', 'width=800,height=600');
