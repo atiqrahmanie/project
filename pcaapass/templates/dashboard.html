@@ -15,9 +15,12 @@
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <h1> welcome to the Dashboard</h1>
+            <h1> welcome to the PCAA Boarding Pass</h1>
            <p>Name   {{ current_user.name }} </p>
            <p>email {{ current_user.email }}</p>
+           <a href="/logout" class="btn btn-danger">Logout</a>
+           <h4> Check_in Bording Pass</h4>
+
 
            <form method="POST">
       <table>
@@ -35,34 +38,33 @@
                <td> {{ form.flightno(size=25) }} </td>
                </tr>
            <tr>    
-              <td> {{ form.flightfrom.label}} 
-               {{ form.flightfrom(size=25) }}</tr>
+              <td> {{ form.flightfrom.label}} </td>
+              <td> {{ form.flightfrom(size=25) }} </td>
             </tr>
-          {{ form.flightto.label }} {{ form.flightto(size=25) }}<br>
-          {{ form.date.label }} {{ form.date(size=25) }}<br>
-          {{ form.time.label }} {{ form.time(size=25) }}<br>
-          {{ form.submit() }}
+           <tr> 
+                <td> {{ form.flightto.label }}</td>
+                 <td>{{ form.flightto(size=25) }}</td>
+           </tr>
+           <tr>
+               <td> {{ form.date.label }}</td>
+               <td> {{ form.date(size=25) }}</td>
+               </tr>
+               <tr>
+                <td>{{ form.time.label }}</td>
+                 <td>{{ form.time(size=25) }}</td>
+             </tr>
+             <tr>
+
+                    {{ form.submit() }}
+             </tr>
+      </table>
 </form>
-            <a href="/logout" class="btn btn-danger">Logout</a>
+             
+            
         </div>
     </div>
 </div>
-<h4> Check_in Bording Pass</h4>
-<div>
-<form method="POST">
 
-          {{ form.hidden_tag() }}
-
-          {{ form.name.label }} {{ form.name(SIZE=25)}}<br>
-          {{ form.passportno.label }} {{ form.passportno(size=25) }}<br>
-          {{ form.flightno.label }} {{ form.flightno(size=25) }}<br>
-          {{ form.flightfrom.label}} {{ form.flightfrom(size=25) }}<br>
-          {{ form.flightto.label }} {{ form.flightto(size=25) }}<br>
-          {{ form.date.label }} {{ form.date(size=25) }}<br>
-          {{ form.time.label }} {{ form.time(size=25) }}<br>
-       
-          {{ form.submit() }}
-</form></div>
 <h4>Your Boarding passes</h4>
 
       {% if passes %}
