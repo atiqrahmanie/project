@@ -5,7 +5,8 @@ from wtforms import StringField,PasswordField,SubmitField
 from wtforms.validators import DataRequired, Email, ValidationError
 from flask_mysqldb import MySQL
 from flask_bcrypt import Bcrypt
-
+from wtforms import DateField, TimeField
+import datetime
 
 
 app = Flask(__name__)
@@ -69,8 +70,10 @@ class TravelpassForm(FlaskForm):
     flightno = StringField('flightno', validators=[DataRequired()])
     flightfrom = StringField('flightfrom', validators=[DataRequired()])
     flightto = StringField('flightto', validators=[DataRequired()])
-    date = StringField('date', validators=[DataRequired()])
-    time = StringField('time', validators=[DataRequired()])
+    date = DateField('date', format='%Y-%m-%d', default=datetime.date.today)
+    time = TimeField('time', format='%H:%M' , default=datetime.datetime.now().time)
+
+    
     submit = SubmitField('submit')
 
 @app.route('/register' ,methods=['GET', 'POST'])
@@ -141,18 +144,22 @@ def dashboard():
     
     if request.method == 'GET' and edit_index is not None:
      if edit_index is not None:
-             try:
+        
+
+        try:
                   bp = passes[int(edit_index)]
                   form.name.data = bp['name']
                   form.passportno.data = bp['passportno']
                   form.flightno.data = bp['flightno']   
                   form.flightfrom.data = bp['flightfrom'] 
                   form.flightto.data = bp['flightto']
-                  form.date.data = bp['date']
-                  form.time.data = bp['time']
-             except (ValueError):
+                  form.date.data =  datetime.striptime(bp['date'] , '%Y-%m-%d').date()
+                  form.time.data =  datetime.striptime(bp['time'] , '%H:%M').date()
+
+        except (ValueError):
                     flash('Not Valid Travel pass index.')
-  
+
+                  
    #    submission on post
 
     if request.method == 'POST' and form.validate_on_submit():
@@ -162,8 +169,10 @@ def dashboard():
             'flightno': form.flightno.data,
             'flightfrom': form.flightfrom.data,
             'flightto': form.flightto.data,
-            'date' : form.date.data,
-            'time': form.time.data
+            'date' : form.date.data.strftime('%Y-%m-%d'),
+            'time': form.time.data.strftime('%H:%M')
+
+            
             
         }
       

@@ -91,7 +91,7 @@
               <button class="btn btn-primary btn-sm mt-2" onclick="printPass({{ loop.index0 }})">Print</button>
 
             <a href="{{ url_for('dashboard' , edit=loop.index0 )}}">Edit</a>
-            <form method="POST" action="{{ url_for('delete_pass' , index=loop.index0) }}" styyle="display:inline;">
+            <form method="POST" action="{{ url_for('delete_pass' , index=loop.index0) }}" style="display:inline;">
                        <button type="submit">Delete</button>
         </li>
       {% endfor %}
