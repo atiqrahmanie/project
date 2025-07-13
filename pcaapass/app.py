@@ -9,7 +9,7 @@ from wtforms import DateField, TimeField
 import datetime
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='smartboarding', static_folder='static')
 bcrypt = Bcrypt(app)
 
 # Configure the MySQL connection
