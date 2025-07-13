@@ -14,9 +14,13 @@ Problem Statement
 Project Objectives 
 
 •	Automate and digitalize boarding pass.
+
 •	Users enable the management of their boarding information. 
+
 •	Make CRUD (Create, Read, Update, Delete) possible to apply on travel passes. 
+
 •	Print smart boarding passes to be able to print.
+
 •	Ensure that there are fewer mistakes and perfection in processes.
 
 
@@ -24,11 +28,18 @@ Technologies Used
 
 Technology Description
 •	Flask Web platform that deals with routing and view creation. 
+
 •	Flask-WTF Form validation and CSRF. 
+
 •	Flask-Login User sessions and log in state.
+
 •	Flask-Bcrypt Password authentication and hash. 
+
 •	Flask-MySQL dB MySQL database connection. 
+
+
 •	MySQL Relational database to store the user data. 
+
 •	Python Main programming language.
 
 
