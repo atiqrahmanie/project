@@ -27,7 +27,7 @@
           {{ form.hidden_tag() }}
           <tr>
           <td>{{ form.name.label }} </td>
-          <td> {{ form.name(SIZE=25)}}</td>
+          <td> {{ form.name(size=25)}}</td>
           </tr>
           <tr>
          <td> {{ form.passportno.label }}</td>
@@ -55,7 +55,7 @@
              </tr>
              <tr>
 
-                    {{ form.submit() }}
+                   <td colspan="4"> {{ form.submit() }}</td>
              </tr>
       </table>
 </form>
@@ -78,7 +78,7 @@
         <li>
             <div id ="pass-{{ loop.index0 }}" class="pass">
             <strong>Airline:</strong> Emirates Airline<br>
-            <strong>Name:</strong> {{ pass.name }}<br>
+            <strong>Name:</strong> {{ pass['name'] }}<br>
             <strong>Passport No:</strong> {{ pass.passportno }}<br>
             <strong>Flight No:</strong> {{ pass.flightno }}<br>
             <strong>Flight From:</strong> {{ pass.flightfrom }}<br>
@@ -87,7 +87,8 @@
             <strong>Time:</strong> {{ pass.time }}<br>
          
              </div>
-              <button class="btn btn-primary btn-sm mt-2" onclick="printPass({{ loop.index0 }})">Print</button>
+            <button class="btn btn-primary btn-sm mt-2" onclick="printPass({{ loop.index0 }})">Print Boarding Pass</button>
+
 
             <a href="{{ url_for('dashboard' , edit=loop.index0 )}}">Edit</a>
             <form method="POST" action="{{ url_for('delete_pass' , index=loop.index0) }}" style="display:inline;">
@@ -99,7 +100,10 @@
 <p>No boarding passes found.</p>
 {% endif %}
 
+
 <script>
+
+  
   
   function togglePreview() {
     const preview = document.getElementById('boardingpass');
@@ -110,6 +114,8 @@ function printPass(index) {
   const passDiv = document.getElementById(`pass-${index}`);
   const printWindow = window.open('', '', 'width=800,height=600');
   printWindow.document.write(`
+     <html>
+     <head>
         <title>Print Boarding Pass</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
       </head>
@@ -123,6 +129,11 @@ function printPass(index) {
   printWindow.document.close();
 }
 </script>
+
+
+
+
+
 
 
 
